@@ -17,7 +17,7 @@ mongoose.connect(
   }/prm-backend`
 );
 mongoose.connection.once("open", () => {
-  console.log("connected to the databse");
+  console.log("connected to the database");
 });
 
 const server = hapi.server({
