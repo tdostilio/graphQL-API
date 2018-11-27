@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const hapi = require("hapi");
 const { graphqlHapi, graphiqlHapi } = require("apollo-server-hapi");
 const schema = require("./graphql/schema");
@@ -8,12 +10,12 @@ const Inert = require("inert");
 const Vision = require("vision");
 const HapiSwagger = require("hapi-swagger");
 const Pack = require("./package");
-require("dotenv").config();
-const user = process.env.MONGO_USER;
-const pw = process.env.MONGO_PW;
 
-console.log(`user: ${user}`);
-mongoose.connect(`mongodb://${user}:${pw}@ds255403.mlab.com:55403/prm-backend`);
+mongoose.connect(
+  `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}${
+    process.env.DB_HOST
+  }/prm-backend`
+);
 mongoose.connection.once("open", () => {
   console.log("connected to the databse");
 });
